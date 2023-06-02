@@ -1,6 +1,7 @@
 import logger from "./libs/utils/logger";
 import express from 'express'
 import { Request, Response } from "express";
+import cors from "cors";
 
 // Services
 import "./libs/services/database";
@@ -13,6 +14,21 @@ import API from '../src/libs/api/index';
 
 const app = express();
 
+// app.use(cors({
+//     origin: '*'
+// }));
+  
+app.use(
+    cors({
+      origin: 'http://localhost:3000', // Replace with the actual origin of your front end
+      methods: ['GET', 'POST', 'PUT', 'DELETE'],
+      allowedHeaders: ['Content-Type', 'Authorization'],
+      credentials: true, // Allow cookies to be included in the request
+    })
+  );
+  
+
+
 // Middleware to parse request body
 app.use(express.json());
 
@@ -22,14 +38,19 @@ app.get('/', (req, res) => {
 })
 
 // User
-// creates an user
 app.post('/api/user/createuser', API.User.createUser);
+app.post('/api/user/login', API.User.login);
+// editUser moet nog gemaakt worden
+// deleteUSer moet nog gemaakt worden
 
-
-
+// To check if API is still alive
 app.get(`/healthcheck`, (req, res) => {
     res.send('OK')
   })
+
+
+
+
 
 
 // ending
