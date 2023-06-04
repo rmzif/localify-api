@@ -51,7 +51,6 @@ export const createUser = async (req: Request, res: Response) => {
 
 
 // function that logsin the user
-// dit moeten we veranderen naar email, niet naar username
 export const login = async (req: Request, res: Response) => {
   try {
     const { userName, password } = req.body;

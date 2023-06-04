@@ -40,17 +40,12 @@ app.get('/', (req, res) => {
 // User
 app.post('/api/user/createuser', API.User.createUser);
 app.post('/api/user/login', API.User.login);
-// editUser moet nog gemaakt worden
-// deleteUSer moet nog gemaakt worden
+
 
 // To check if API is still alive
 app.get(`/healthcheck`, (req, res) => {
     res.send('OK')
   })
-
-
-
-
 
 
 // ending
